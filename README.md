@@ -1,4 +1,3 @@
-
 # RUN BAXTER SDK in any Operating System using Docker
 
 Run Baxter SDK and simulation seamlessly on any modern operating system using Docker, with full GPU support and graphical capabilities.
@@ -20,7 +19,6 @@ This repository provides a Docker-based solution for running Baxter SDK and simu
 ## Requirements
 
 - Docker installed on your system
-- NVIDIA GPU with appropriate drivers
 - NVIDIA Container Toolkit installed
 - X11 for display forwarding
 
@@ -42,7 +40,7 @@ This repository provides a Docker-based solution for running Baxter SDK and simu
    ./baxter.sh
    ```
 
-You'll be logged in as user `ros` (password: `ros`) with sudo privileges. The current directory is mounted to `/workspace` in the container.
+You'll be logged in as user `ros` (password: `ros`) with sudo privileges. The container starts in the Baxter workspace directory at `/home/ros/ros_ws`.
 
 ### Additional Terminals
 
@@ -101,7 +99,17 @@ docker build \
 
 ### Workspace Integration
 
-The container automatically detects and sources Catkin workspaces. If a `devel/setup.bash` exists in the mounted workspace, it will be sourced automatically.
+The container starts in the Baxter workspace directory at `/home/ros/ros_ws`. This workspace is pre-configured with:
+- Baxter SDK
+- Baxter Simulator
+- All necessary dependencies
+
+The workspace is already built and sourced in your `.bashrc`, so you can immediately:
+- Run Baxter simulations
+- Build additional packages
+- Use ROS commands
+
+To access your host machine files, you can use the `/workspace` directory which is linked to your current directory on the host.
 
 ## Acknowledgments
 
@@ -111,9 +119,8 @@ This solution builds upon various community solutions and official documentation
 - [Ubuntu install of ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu)
 - [BAXTER SDK Installation](https://github.com/RethinkRobotics/sdk-docs/wiki/Installing-the-Research-SDK)
 - [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-docker)
+- [CUDA + OpenGL images from NVIDIA](https://hub.docker.com/r/nvidia/cudagl)
 - [Install Gazebo using Ubuntu Packages](http://gazebosim.org/tutorials?cat=install&tut=install_ubuntu&ver=7.0)
-- [Gazebo Models](https://github.com/osrf/gazebo_models) are available
- on Git
 - [nvidia/cudagl](https://hub.docker.com/r/nvidia/cudagl/tags?page=1&name=16.04) Docker image
 - [sunsided repo](https://github.com/sunsided/ros-gazebo-gpu-docker) 
 - [rovbo-maksim issue](https://github.com/ros/genpy/issues/138)
