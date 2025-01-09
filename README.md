@@ -24,8 +24,6 @@ I run the demo on my desktop running Ubuntu 24.04 with only one GPU which is NVI
 ![Demo](https://github.com/user-attachments/assets/daa65669-296c-4575-b00a-dac623d0508d)
 
 
-
-
 ## Requirements
 
 ### Prerequisites
@@ -228,3 +226,4 @@ This solution builds upon various community solutions and official documentation
 - [rovbo-maksim issue](https://github.com/ros/genpy/issues/138)
 
 For any inquiries or support, please contact me: m.abdulwahab.daba@gmail.com
+
