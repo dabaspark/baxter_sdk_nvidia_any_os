@@ -52,9 +52,7 @@ ARG ROS_GROUP_ID=1000
 RUN addgroup --gid $ROS_GROUP_ID ros \
  && useradd --gid $ROS_GROUP_ID --uid $ROS_USER_ID -ms /bin/bash -p "$(openssl passwd -1 ros)" -G root,sudo ros \
  && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
- && mkdir -p /workspace \
- && ln -s /workspace /home/workspace \
- && chown -R ros:ros /home/ros /workspace
+ && chown -R ros:ros /home/ros
 
 # Source the ROS configuration.
 RUN echo "source /opt/ros/kinetic/setup.bash" >> /home/ros/.bashrc
@@ -88,9 +86,9 @@ RUN apt-get update && apt-get install -y \
 
 # use proxy if needed using docker bridge ip
 # Make it use proxy to be able to acess the internet if in China
-ENV http_proxy=http://172.17.0.1:7891
-ENV https_proxy=http://172.17.0.1:7891
-ENV no_proxy=localhost,127.0.0.1
+#ENV http_proxy=http://172.17.0.1:7891
+#ENV https_proxy=http://172.17.0.1:7891
+#ENV no_proxy=localhost,127.0.0.1
 
 # Setup Baxter SDK workspace
 RUN mkdir -p /home/ros/ros_ws/src \
