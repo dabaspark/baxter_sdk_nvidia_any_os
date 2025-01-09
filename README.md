@@ -68,7 +68,6 @@ If you want to build the image yourself or make modifications:
 
 This option takes longer as it builds the image from scratch but allows for customization.
 
-
 ### Workspace Integration
 
 You'll be logged in as user `ros` (password: `ros`) with sudo privileges. The container starts in the Baxter workspace directory at `/home/ros/ros_ws`.
@@ -85,7 +84,6 @@ The workspace is already built and sourced in your `.bashrc`, so you can immedia
 
 To access your host machine files, you can use the `/workspace` directory which is linked to your current directory on the host.
 
-
 ### Additional Terminals
 
 To open additional terminals in the running container:
@@ -94,6 +92,41 @@ docker exec -it baxter bash
 ```
 
 **Note:** The script creates a container named `baxter`. Running `./baxter.sh` twice won't work, but you can open multiple terminals using `docker exec` as shown above.
+
+
+## Session Management
+
+### Container Persistence
+
+By default, running `./baxter.sh` or `./image/image.sh` creates a new container. Any changes made inside the container (like installing new packages or modifying files) will be lost when the container is stopped. However, you can:
+
+1. **Resume an Existing Container:**
+   If you've stopped the container (e.g., after shutting down your computer) but haven't removed it:
+   ```bash
+   # Start the stopped container
+   docker start baxter
+   
+   # Connect to the running container
+   docker exec -it baxter bash
+   ```
+   This way, all your previous changes and work will still be there.
+
+2. **Create a Fresh Container:**
+   If you want to start fresh with a clean environment:
+   ```bash
+   # First, remove the existing container if it exists
+   docker rm baxter
+   
+   # Then run either of these commands:
+   ./baxter.sh            # To build and run new container
+   # or
+   ./image/image.sh       # To run new container from pre-built image
+   ```
+
+
+**Note:** The container name 'baxter' is used by both scripts. You cannot run both scripts at the same time unless you modify the container name in one of them.
+
+
 
 ## Technical Details
 

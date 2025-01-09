@@ -36,7 +36,7 @@ docker pull $DOCKER_IMAGE
 
 # Run the container
 echo "Starting Docker container..."
-docker run --rm -it \
+docker run -it \
     --name "$CONTAINER_NAME" \
     --gpus "$GPUS" \
     --env="DISPLAY" \
