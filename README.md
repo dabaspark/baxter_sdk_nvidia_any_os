@@ -1,10 +1,11 @@
 # RUN BAXTER SDK in any Operating System using Docker
 
-Run Baxter SDK and simulation seamlessly on any modern operating system using Docker, with full GPU support and graphical capabilities.
+Run Baxter SDK and simulation seamlessly on any ubuntu versions using Docker, with full GPU support and graphical capabilities to run Simulation with gazebo and rviz
 
 ## Overview
 
-This repository provides a Docker-based solution for running Baxter SDK and simulation on any modern operating system, eliminating the need for virtual machines or older Ubuntu installations.
+This repository provides a Docker-based solution for running Baxter SDK and simulation on any ubuntu versions, eliminating the need for virtual machines or older Ubuntu installations.
+
 
 ### Key Features
 
@@ -16,11 +17,50 @@ This repository provides a Docker-based solution for running Baxter SDK and simu
 
 **Note:** The container runs Ubuntu 16.04 and ROS Kinetic internally to maintain compatibility with Baxter SDK.
 
+
+## Demo
+I run the demo on my desktop running Ubuntu 24.04 with only one GPU which is NVIDIA GeForce RTX 4060
+
+
+
+
+
 ## Requirements
 
-- Docker installed on your system
-- NVIDIA Container Toolkit installed
-- X11 for display forwarding
+### Prerequisites
+
+1. Docker installed on your system
+
+2. NVIDIA Container Toolkit installed
+
+### Before starting withe this repo
+
+1. **Allow X Server Connections**
+   ```bash
+   # Allow local X server connections
+   xhost +local:root
+   ```
+   Note: Run this command each time you restart your computer, or add it to your startup scripts.
+
+2. **Verify NVIDIA GPU**
+   ```bash
+   # Check NVIDIA driver installation
+   nvidia-smi
+   
+   # Test Docker GPU support
+   docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
+   ```
+
+3. **Check Docker Installation**
+   ```bash
+   # Verify Docker installation
+   docker --version
+   
+   # Check if your user can run Docker without sudo
+   docker ps
+   ```
+
+If everything works, now you can start
 
 ## Quick Start
 
@@ -30,7 +70,7 @@ There are two ways to use this repository:
 
 1. Clone the repository:
    ```bash
-   git clone github.com/dabaspark/baxter_sdk_nvidia_any_os.git
+   git clone https://github.com/dabaspark/baxter_sdk_nvidia_any_os.git
    cd baxter_sdk_nvidia_any_os
    ```
 
@@ -68,11 +108,14 @@ If you want to build the image yourself or make modifications:
 
 This option takes longer as it builds the image from scratch but allows for customization.
 
+**Note:** The container name 'baxter' is used by both scripts. You cannot run both scripts at the same time unless you modify the container name in one of them.
+
 ### Workspace Integration
 
 You'll be logged in as user `ros` (password: `ros`) with sudo privileges. The container starts in the Baxter workspace directory at `/home/ros/ros_ws`.
 
 The container starts in the Baxter workspace directory at `/home/ros/ros_ws`. This workspace is pre-configured with:
+- ROS Kinetic
 - Baxter SDK
 - Baxter Simulator
 - All necessary dependencies
@@ -82,11 +125,9 @@ The workspace is already built and sourced in your `.bashrc`, so you can immedia
 - Build additional packages
 - Use ROS commands
 
-To access your host machine files, you can use the `/workspace` directory which is linked to your current directory on the host.
-
 ### Additional Terminals
 
-To open additional terminals in the running container:
+To open additional terminals: (because we need this often when we work with BAXTER SDK)
 ```bash
 docker exec -it baxter bash
 ```
@@ -122,9 +163,6 @@ By default, running `./baxter.sh` or `./image/image.sh` creates a new container.
    # or
    ./image/image.sh       # To run new container from pre-built image
    ```
-
-
-**Note:** The container name 'baxter' is used by both scripts. You cannot run both scripts at the same time unless you modify the container name in one of them.
 
 
 
