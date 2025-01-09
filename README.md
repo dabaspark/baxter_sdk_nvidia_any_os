@@ -21,6 +21,7 @@ This repository provides a Docker-based solution for running Baxter SDK and simu
 ## Demo
 I run the demo on my desktop running Ubuntu 24.04 with only one GPU which is NVIDIA GeForce RTX 4060
 
+![Demo](https://github.com/user-attachments/assets/daa65669-296c-4575-b00a-dac623d0508d)
 
 
 
