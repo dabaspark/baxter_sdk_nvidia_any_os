@@ -154,7 +154,9 @@ The image is built on `nvidia/cudagl:9.0-base-ubuntu16.04` instead of the standa
 
 ### Using Pre-built Image
 
-The image is available as [`dabaspark/kinetic-baxter:nvidia`](https://hub.docker.com/r/dabaspark/kinetic-baxter).
+The image is available as [`dabaspark/kinetic-baxter:nvidia`](https://hub.docker.com/r/dabaspark/kinetic-baxter) on Docker Hub.
+
+For quick setup and usage of the pre-built image, see the [image-specific instructions](image/README.md).
 
 ### Building the Image
 
