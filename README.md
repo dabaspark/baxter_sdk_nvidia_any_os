@@ -24,6 +24,32 @@ This repository provides a Docker-based solution for running Baxter SDK and simu
 
 ## Quick Start
 
+There are two ways to use this repository:
+
+### Option 1: Using Pre-built Image (Recommended)
+
+1. Clone the repository:
+   ```bash
+   git clone github.com/dabaspark/baxter_sdk_nvidia_any_os.git
+   cd baxter_sdk_nvidia_any_os
+   ```
+
+2. Make the script executable:
+   ```bash
+   chmod +x image/image.sh
+   ```
+
+3. Run the container using the pre-built image:
+   ```bash
+   ./image/image.sh
+   ```
+
+This option is faster as it downloads the pre-built image directly from Docker Hub.
+
+### Option 2: Building from Source
+
+If you want to build the image yourself or make modifications:
+
 1. Clone the repository:
    ```bash
    git clone github.com/dabaspark/baxter_sdk_nvidia_any_os.git
@@ -35,15 +61,17 @@ This repository provides a Docker-based solution for running Baxter SDK and simu
    chmod +x baxter.sh
    ```
 
-3. Run the container:
+3. Build and run the container:
    ```bash
    ./baxter.sh
    ```
 
-You'll be logged in as user `ros` (password: `ros`) with sudo privileges. The container starts in the Baxter workspace directory at `/home/ros/ros_ws`.
+This option takes longer as it builds the image from scratch but allows for customization.
 
 
 ### Workspace Integration
+
+You'll be logged in as user `ros` (password: `ros`) with sudo privileges. The container starts in the Baxter workspace directory at `/home/ros/ros_ws`.
 
 The container starts in the Baxter workspace directory at `/home/ros/ros_ws`. This workspace is pre-configured with:
 - Baxter SDK
@@ -115,9 +143,7 @@ docker build \
 
 ## Acknowledgments
 
-This solution builds upon various community solutions and official documentation to create a seamless experience for running Baxter SDK on modern systems.
-
-* Special thanks to the following:
+This solution builds upon various community solutions and official documentation to create a seamless experience for running Baxter SDK on modern systems. Special thanks to the following:
 - [Ubuntu install of ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu)
 - [BAXTER SDK Installation](https://github.com/RethinkRobotics/sdk-docs/wiki/Installing-the-Research-SDK)
 - [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-docker)
