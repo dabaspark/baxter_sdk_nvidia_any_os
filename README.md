@@ -42,6 +42,22 @@ This repository provides a Docker-based solution for running Baxter SDK and simu
 
 You'll be logged in as user `ros` (password: `ros`) with sudo privileges. The container starts in the Baxter workspace directory at `/home/ros/ros_ws`.
 
+
+### Workspace Integration
+
+The container starts in the Baxter workspace directory at `/home/ros/ros_ws`. This workspace is pre-configured with:
+- Baxter SDK
+- Baxter Simulator
+- All necessary dependencies
+
+The workspace is already built and sourced in your `.bashrc`, so you can immediately:
+- Run Baxter simulations
+- Build additional packages
+- Use ROS commands
+
+To access your host machine files, you can use the `/workspace` directory which is linked to your current directory on the host.
+
+
 ### Additional Terminals
 
 To open additional terminals in the running container:
@@ -97,20 +113,6 @@ docker build \
     -f kinetic.Dockerfile .
 ```
 
-### Workspace Integration
-
-The container starts in the Baxter workspace directory at `/home/ros/ros_ws`. This workspace is pre-configured with:
-- Baxter SDK
-- Baxter Simulator
-- All necessary dependencies
-
-The workspace is already built and sourced in your `.bashrc`, so you can immediately:
-- Run Baxter simulations
-- Build additional packages
-- Use ROS commands
-
-To access your host machine files, you can use the `/workspace` directory which is linked to your current directory on the host.
-
 ## Acknowledgments
 
 This solution builds upon various community solutions and official documentation to create a seamless experience for running Baxter SDK on modern systems.
@@ -124,3 +126,5 @@ This solution builds upon various community solutions and official documentation
 - [nvidia/cudagl](https://hub.docker.com/r/nvidia/cudagl/tags?page=1&name=16.04) Docker image
 - [sunsided repo](https://github.com/sunsided/ros-gazebo-gpu-docker) 
 - [rovbo-maksim issue](https://github.com/ros/genpy/issues/138)
+
+For any inquiries or support, please contact me: m.abdulwahab.daba@gmail.com
