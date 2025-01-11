@@ -1,4 +1,4 @@
-# RUN BAXTER SDK in any Operating System using Docker
+# RUN BAXTER SDK in any ubuntu versions using Docker
 
 Run Baxter SDK and simulation seamlessly on any ubuntu versions using Docker, with full GPU support and graphical capabilities to run Simulation with gazebo and rviz
 
